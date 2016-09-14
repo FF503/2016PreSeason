@@ -46,6 +46,10 @@ public class CyberShooterSubsystem extends Subsystem implements PIDSource, PIDOu
     	shooterMotor.set(0);
     }
     
+    public static void stopShooter(){
+    	shooterMotor.set(0);
+    }
+    
     public static double getPressure(){		//change to make it accurate
     	return pressureSensor.getVoltage();
     }

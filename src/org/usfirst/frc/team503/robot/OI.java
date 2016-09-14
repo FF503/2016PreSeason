@@ -2,8 +2,8 @@ package org.usfirst.frc.team503.robot;
 
 import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem.Pressure;
 
-import cyber.CyberPressurizeCommand;
-import cyber.CyberShootCommand;
+import cyber_commands.CyberPressurizeCommand;
+import cyber_commands.CyberShootCommand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
