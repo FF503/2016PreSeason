@@ -19,10 +19,10 @@ public class DrivetrainSubsystem extends Subsystem {
     
     private void setMotorOutputs(double leftSpeed, double rightSpeed, boolean scaledInputs){
     	if(scaledInputs==true){
-    		Robot.bot.getCANTalonObj(0).set(scaleInput(-leftSpeed));
-    		Robot.bot.getCANTalonObj(1).set(scaleInput(rightSpeed));
-    		Robot.bot.getCANTalonObj(2).set(scaleInput(-leftSpeed));
-    		Robot.bot.getCANTalonObj(3).set(scaleInput(rightSpeed));
+    		//Robot.bot.getCANTalonObj(0).set(scaleInput(-leftSpeed));
+    		//Robot.bot.getCANTalonObj(1).set(scaleInput(rightSpeed));
+    		//Robot.bot.getCANTalonObj(2).set(scaleInput(-leftSpeed));
+    		//Robot.bot.getCANTalonObj(3).set(scaleInput(rightSpeed));
     	}
     	else{
     		Robot.bot.getCANTalonObj(0).set(-leftSpeed);
@@ -42,6 +42,7 @@ public class DrivetrainSubsystem extends Subsystem {
         	return num;
     }
     
+    //doesn't work
 	private double scaleInput(double dVal)  {
 		double[] scaleArray = { 0.0, 0.0, 0.03, 0.06, 0.09, 0.13, 0.17, 0.21,
 				0.26, 0.31, 0.36, 0.41, 0.47, 0.53, 0.61, .80, 1.00 };

@@ -18,12 +18,11 @@ public class CyberTeleopArmCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	requires(CyberArmSubsystem.instance);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(CyberArmSubsystem.getArmLowerLimitSwitch() == true){
+    	/*if(CyberArmSubsystem.getArmLowerLimitSwitch() == true){
     		if(OI.getRightYValue()<0){
     			CyberArmSubsystem.setArmPower(0);
     		}
@@ -41,7 +40,8 @@ public class CyberTeleopArmCommand extends Command {
     	}
     	else{
     		CyberArmSubsystem.setArmPower(OI.getRightYValue());
-    	}
+    	}*/
+    	CyberArmSubsystem.setArmPower(OI.getRightYValue());
     }
 
     // Make this return true when this Command no longer needs to run execute()

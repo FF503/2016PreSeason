@@ -37,7 +37,7 @@ public class CyberArmSubsystem extends Subsystem implements PIDSource, PIDOutput
     	rightArmMotor = Robot.bot.getSparkObj(1);
     	armUpperLimitSwitch = Robot.bot.getDigitalObj(0);
     	armLowerLimitSwitch = Robot.bot.getDigitalObj(1);
-    	accelerometer = Robot.bot.getAccelObj(3);
+    	accelerometer = Robot.bot.getAccelObj(0);
     }
     
     public static CyberArmSubsystem instance = new CyberArmSubsystem();
@@ -54,8 +54,8 @@ public class CyberArmSubsystem extends Subsystem implements PIDSource, PIDOutput
     }
     
     public static void setArmPower(double power){
-    	leftArmMotor.set(power);
-    	rightArmMotor.set(power);
+    	leftArmMotor.set(-power);
+    	//rightArmMotor.set(-power);
     }
     
     public static enum ArmAngle{

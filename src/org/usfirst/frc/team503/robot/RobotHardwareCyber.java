@@ -25,18 +25,18 @@ public class RobotHardwareCyber extends RobotHardware {
 	
 	@Override
 	public void initialize(){
-		frontLeftMotor = new CANTalon(3); // practice bot values, change for cyber
-		frontRightMotor = new CANTalon(1);
-		backLeftMotor = new CANTalon(6);
-		backRightMotor = new CANTalon(4);
-		leftArmMotor = new Spark(0);
-		rightArmMotor = new Spark(1);
-		shooterMotor = new Talon(2);
-		pressureMotor = new Talon(3);
-		armUpperLimitSwitch = new DigitalInput(0);
-		armLowerLimitSwitch = new DigitalInput(1);
+		frontLeftMotor = new CANTalon(0); // practice bot values, change for cyber
+		frontRightMotor = new CANTalon(2);
+		backLeftMotor = new CANTalon(3);
+		backRightMotor = new CANTalon(1);
+		leftArmMotor = new Spark(1);
+		rightArmMotor = new Spark(3);
+		shooterMotor = new Talon(0);
+		pressureMotor = new Talon(2);
+		//armUpperLimitSwitch = new DigitalInput(0);
+		//armLowerLimitSwitch = new DigitalInput(1);
 		pressureSensor = new AnalogInput(0);
-		accelerometer = new AnalogAccelerometer(1);
+		//accelerometer = new AnalogAccelerometer(1);
 	}
 	
 	@Override

@@ -48,7 +48,7 @@ public class OI {
 	
 	public static void initialize(){
 		shootButton.whenPressed(new CyberShootCommand());
-		pressureButton.whenPressed(new CyberPressurizeCommand(Pressure.MID));
+		//pressureButton.whenPressed(new CyberPressurizeCommand(Pressure.MID));
 	}
 	
 	public static double getLeftYValue(){

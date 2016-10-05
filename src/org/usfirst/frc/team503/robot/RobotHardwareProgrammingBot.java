@@ -15,7 +15,7 @@ public class RobotHardwareProgrammingBot extends RobotHardware {
 	
 	@Override
 	public void initialize(){
-		frontLeftMotor = new CANTalon(1); // practice bot values, change for cyber
+		frontLeftMotor = new CANTalon(1);
 		frontRightMotor = new CANTalon(3);
 		backLeftMotor = new CANTalon(2);
 		backRightMotor = new CANTalon(4);

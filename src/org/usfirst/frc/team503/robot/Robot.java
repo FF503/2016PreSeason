@@ -1,11 +1,14 @@
 
 package org.usfirst.frc.team503.robot;
 
-import org.usfirst.frc.team503.robot.commands.TankDriveCommand;
+import org.usfirst.frc.team503.robot.commands.ArcadeDriveCommand;
+import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem;
 
+import cyber_commands.CyberTeleopArmCommand;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -79,15 +82,17 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
        // if (autonomousCommand != null) autonomousCommand.cancel();
-    	(new TankDriveCommand()).start();
-    	//(new TeleopArmCommand()).start();
+    	
+    	(new ArcadeDriveCommand()).start();
+    	(new CyberTeleopArmCommand()).start();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+    	SmartDashboard.putNumber("pressure", CyberShooterSubsystem.getPressure());
+    	Scheduler.getInstance().run();
     }
     
     /**
