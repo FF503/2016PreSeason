@@ -1,25 +1,23 @@
-package cyber;
+package motion_profile_commands;
 
-import org.usfirst.frc.team503.robot.OI;
-import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem;
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainControlSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CyberShootCommand extends Command {
-
-    public CyberShootCommand() {
+public class WaitForDistanceCommand extends Command {
+	private double distance;
+	private DrivetrainControlSubsystem drive = DrivetrainControlSubsystem.getInstance();
+    public WaitForDistanceCommand(double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.distance = distance;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(OI.getSafety1() && OI.getSafety2()){
-    		CyberShooterSubsystem.shoot();
-    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +26,7 @@ public class CyberShootCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return drive.getCurrentDistance() >= distance;
     }
 
     // Called once after isFinished returns true

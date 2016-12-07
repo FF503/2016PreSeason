@@ -3,13 +3,26 @@ package org.usfirst.frc.team503.robot.subsystems;
 import org.usfirst.frc.team503.robot.Robot;
 import org.usfirst.frc.team503.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class DrivetrainSubsystem extends Subsystem {
-
+	
+	private CANTalon frontLeftMotor;
+	private CANTalon frontRightMotor;
+	private CANTalon backLeftMotor;
+	private CANTalon backRightMotor;
+    
+    public DrivetrainSubsystem(){
+    	frontLeftMotor= Robot.bot.getCANTalonObj(0);
+    	frontRightMotor = Robot.bot.getCANTalonObj(1);
+    	backLeftMotor = Robot.bot.getCANTalonObj(2);
+    	backRightMotor = Robot.bot.getCANTalonObj(3);
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -25,10 +38,10 @@ public class DrivetrainSubsystem extends Subsystem {
     		//Robot.bot.getCANTalonObj(3).set(scaleInput(rightSpeed));
     	}
     	else{
-    		Robot.bot.getCANTalonObj(0).set(-leftSpeed);
-	    	Robot.bot.getCANTalonObj(1).set(rightSpeed);
-	    	Robot.bot.getCANTalonObj(2).set(-leftSpeed);
-	    	Robot.bot.getCANTalonObj(3).set(rightSpeed);
+    		frontLeftMotor.set(-leftSpeed);
+	    	frontRightMotor.set(rightSpeed);
+	    	backLeftMotor.set(-leftSpeed);
+	    	backRightMotor.set(rightSpeed);
     	}
     }
     
