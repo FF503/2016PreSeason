@@ -329,7 +329,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
         }
     }
 
-    private void updateVelocityHeadingSetpoint() {
+    public void updateVelocityHeadingSetpoint() {
         Rotation2d actualGyroAngle = getGyroAngle();
 
         mLastHeadingErrorDegrees = velocityHeadingSetpoint_.getHeading().rotateBy(actualGyroAngle.inverse())
@@ -340,7 +340,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
                 velocityHeadingSetpoint_.getRightSpeed() - deltaSpeed / 2);
     }
 
-    private void updatePathFollower() {
+    public void updatePathFollower() {
         RigidTransform2d robot_pose = RobotState.getInstance().getLatestFieldToVehicle().getValue();
         RigidTransform2d.Delta command = pathFollowingController_.update(robot_pose, Timer.getFPGATimestamp());
         Kinematics.DriveVelocity setpoint = Kinematics.inverseKinematics(command);
