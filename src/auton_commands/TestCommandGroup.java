@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import motion_profile_commands.FollowPathCommand;
+import util.Path;
 import util.Path.Waypoint;
+import util.Translation2d;
 
 /**
  *
@@ -29,5 +32,7 @@ public class TestCommandGroup extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	List<Waypoint> path = new ArrayList<Waypoint>();
+    	path.add(new Waypoint(new Translation2d(40,0), 10));
+    	addSequential(new FollowPathCommand(new Path(path), false));
     }
 }

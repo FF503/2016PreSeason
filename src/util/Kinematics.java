@@ -1,6 +1,6 @@
 package util;
 
-import org.usfirst.frc.team503.robot.Constants;
+import org.usfirst.frc.team503.robot.RobotHardwareProgrammingBot.Constants;
 
 /**
  * Provides forward and inverse kinematics equations for the robot modeling the

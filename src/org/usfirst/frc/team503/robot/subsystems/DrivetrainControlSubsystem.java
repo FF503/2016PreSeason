@@ -3,15 +3,14 @@ package org.usfirst.frc.team503.robot.subsystems;
 
 import java.util.Set;
 
-import org.usfirst.frc.team503.robot.Constants;
 import org.usfirst.frc.team503.robot.Robot;
+import org.usfirst.frc.team503.robot.RobotHardwareProgrammingBot.Constants;
 import org.usfirst.frc.team503.robot.RobotState;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -275,12 +274,10 @@ public class DrivetrainControlSubsystem extends Subsystem {
         return velocityHeadingSetpoint_;
     }
 
-//    @Override
     public synchronized void stop() {
         setOpenLoop(DriveSignal.NEUTRAL);
     }
 
-//    @Override
     public void outputToSmartDashboard() {
         SmartDashboard.putNumber("left_distance", getLeftDistanceInches());
         SmartDashboard.putNumber("right_distance", getRightDistanceInches());
@@ -295,7 +292,6 @@ public class DrivetrainControlSubsystem extends Subsystem {
         SmartDashboard.putBoolean("line_sensor2", lineSensor2_.get());
     }
 
-//    @Override
     public synchronized void zeroSensors() {
         resetEncoders();
 //        gyro_.reset();
