@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import util.AdaptivePurePursuitController;
 import util.DriveSignal;
 import util.Kinematics;
+import util.NavXGyro;
 import util.Path;
 import util.RigidTransform2d;
 import util.Rotation2d;
@@ -49,7 +50,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
     private final CANTalon leftMaster_, leftSlave_, rightMaster_, rightSlave_;
     private boolean isHighGear_ = false;
     private boolean isBrakeMode_ = true;
-//    private final ADXRS453_Gyro gyro_;
+    private NavXGyro gyro;
     private DigitalInput lineSensor1_;
     private DigitalInput lineSensor2_;
     private Counter lineSensorCounter1_;
@@ -100,16 +101,16 @@ public class DrivetrainControlSubsystem extends Subsystem {
                 CANTalon.FeedbackDevice.CtreMagEncoder_Relative) != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
             DriverStation.reportError("Could not detect left drive encoder!", false);
         }
-        leftMaster_.reverseSensor(true);
-        leftMaster_.reverseOutput(false);
-        leftSlave_.reverseOutput(false);
+        leftMaster_.reverseSensor(false);
+        leftMaster_.reverseOutput(true);
+        leftSlave_.reverseOutput(true);
         rightMaster_.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
         if (rightMaster_.isSensorPresent(
                 CANTalon.FeedbackDevice.CtreMagEncoder_Relative) != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
             DriverStation.reportError("Could not detect right drive encoder!", false);
         }
         rightMaster_.reverseSensor(false);
-        rightMaster_.reverseOutput(true);
+        rightMaster_.reverseOutput(false);
         rightSlave_.reverseOutput(false);
 
         // Load velocity control gains
@@ -132,6 +133,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
         velocityHeadingPid_.setOutputRange(-30, 30);
 
         setOpenLoop(DriveSignal.NEUTRAL);
+        gyro = new NavXGyro();
     }
 
     protected synchronized void setLeftRightPower(double left, double right) {
@@ -245,8 +247,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
     }
 
     public synchronized Rotation2d getGyroAngle() {
-       // return Rotation2d.fromDegrees(gyro_.getAngle());
-    	return new Rotation2d();
+        return Rotation2d.fromDegrees(gyro.getAngle());
     }
 
     public boolean isHighGear() {
@@ -285,8 +286,8 @@ public class DrivetrainControlSubsystem extends Subsystem {
         SmartDashboard.putNumber("right_velocity", getRightVelocityInchesPerSec());
         SmartDashboard.putNumber("left_error", leftMaster_.getClosedLoopError());
         SmartDashboard.putNumber("right_error", leftMaster_.getClosedLoopError());
-//        SmartDashboard.putNumber("gyro_angle", getGyro().getAngle());
-//        SmartDashboard.putNumber("gyro_center", getGyro().getCenter());
+        SmartDashboard.putNumber("gyro_angle", gyro.getAngle());
+//        SmartDashboard.putNumber("gyro_center", gyro.getCenter());
         SmartDashboard.putNumber("heading_error", mLastHeadingErrorDegrees);
         SmartDashboard.putBoolean("line_sensor1", lineSensor1_.get());
         SmartDashboard.putBoolean("line_sensor2", lineSensor2_.get());
@@ -294,7 +295,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
 
     public synchronized void zeroSensors() {
         resetEncoders();
-//        gyro_.reset();
+        gyro.reset();
     }
 
     private void configureTalonsForSpeedControl() {
@@ -318,6 +319,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
                 || driveControlState_ == DriveControlState.PATH_FOLLOWING_CONTROL) {
             leftMaster_.set(inchesPerSecondToRpm(left_inches_per_sec));
             rightMaster_.set(inchesPerSecondToRpm(right_inches_per_sec));
+            System.out.println("Updating velocity setpoint.");
         } else {
             System.out.println("Hit a bad velocity control state");
             leftMaster_.set(0);

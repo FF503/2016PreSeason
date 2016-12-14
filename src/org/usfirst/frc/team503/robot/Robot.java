@@ -4,6 +4,7 @@ package org.usfirst.frc.team503.robot;
 import org.usfirst.frc.team503.robot.commands.ArcadeDriveCommand;
 import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem;
 
+import auton_commands.TestCommandGroup;
 import cyber_commands.CyberTeleopArmCommand;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -66,7 +67,7 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-       // if (autonomousCommand != null) autonomousCommand.start();
+    	(new TestCommandGroup()).start();
     }
 
     /**
