@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	bot = new RobotHardwareCyber();		//change for different robots
+    	bot = new RobotHardwareProgrammingBot();		//change for different robots
     	bot.initialize();
     	OI.initialize();
     }
@@ -85,7 +85,7 @@ public class Robot extends IterativeRobot {
        // if (autonomousCommand != null) autonomousCommand.cancel();
     	
     	(new ArcadeDriveCommand()).start();
-    	(new CyberTeleopArmCommand()).start();
+    	//(new CyberTeleopArmCommand()).start();
     }
 
     /**

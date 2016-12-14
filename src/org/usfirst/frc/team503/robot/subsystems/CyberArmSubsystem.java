@@ -33,11 +33,11 @@ public class CyberArmSubsystem extends Subsystem implements PIDSource, PIDOutput
     }
     
     public CyberArmSubsystem(){
-    	leftArmMotor = Robot.bot.getSparkObj(0);
+    	/*leftArmMotor = Robot.bot.getSparkObj(0);
     	rightArmMotor = Robot.bot.getSparkObj(1);
     	armUpperLimitSwitch = Robot.bot.getDigitalObj(0);
     	armLowerLimitSwitch = Robot.bot.getDigitalObj(1);
-    	accelerometer = Robot.bot.getAccelObj(0);
+    	accelerometer = Robot.bot.getAccelObj(0);*/
     }
     
     public static CyberArmSubsystem instance = new CyberArmSubsystem();
