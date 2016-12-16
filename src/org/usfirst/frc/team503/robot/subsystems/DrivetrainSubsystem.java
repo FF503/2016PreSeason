@@ -38,6 +38,10 @@ public class DrivetrainSubsystem extends Subsystem {
     		//Robot.bot.getCANTalonObj(3).set(scaleInput(rightSpeed));
     	}
     	else{
+    		frontLeftMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    		frontRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    		backLeftMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+    		backRightMotor.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     		frontLeftMotor.set(-leftSpeed);
 	    	frontRightMotor.set(rightSpeed);
 	    	backLeftMotor.set(-leftSpeed);
@@ -53,6 +57,13 @@ public class DrivetrainSubsystem extends Subsystem {
             num= -1.0;
         }
         	return num;
+    }
+    
+    public void enableBrakeMode(boolean coast){
+    	frontLeftMotor.enableBrakeMode(coast);
+    	frontRightMotor.enableBrakeMode(coast);
+    	backLeftMotor.enableBrakeMode(coast);
+    	backRightMotor.enableBrakeMode(coast);
     }
     
     //doesn't work

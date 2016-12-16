@@ -74,11 +74,10 @@ public class DrivetrainControlSubsystem extends Subsystem {
         rightMaster_ = Robot.bot.getCANTalonObj(1);
         rightSlave_ = Robot.bot.getCANTalonObj(3);
         setHighGear(true);
-        //gyro_ = new ADXRS453_Gyro();
-        lineSensor1_ = new DigitalInput(Constants.kLineSensor1DIO);
+/*        lineSensor1_ = new DigitalInput(Constants.kLineSensor1DIO);
         lineSensor2_ = new DigitalInput(Constants.kLineSensor2DIO);
         lineSensorCounter1_ = new Counter(lineSensor1_);
-        lineSensorCounter2_ = new Counter(lineSensor2_);
+        lineSensorCounter2_ = new Counter(lineSensor2_);*/
 
         // Get status at 100Hz
         leftMaster_.setStatusFrameRateMs(CANTalon.StatusFrameRate.Feedback, 10);
@@ -96,17 +95,17 @@ public class DrivetrainControlSubsystem extends Subsystem {
         setBrakeMode(false);
 
         // Set up the encoders
-        leftMaster_.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
-        if (leftMaster_.isSensorPresent(
-                CANTalon.FeedbackDevice.CtreMagEncoder_Relative) != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
+        leftMaster_.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+        if (leftMaster_.isSensorPresent(CANTalon.FeedbackDevice.QuadEncoder) 
+        		!= CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
             DriverStation.reportError("Could not detect left drive encoder!", false);
         }
         leftMaster_.reverseSensor(false);
         leftMaster_.reverseOutput(true);
         leftSlave_.reverseOutput(true);
-        rightMaster_.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+        rightMaster_.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
         if (rightMaster_.isSensorPresent(
-                CANTalon.FeedbackDevice.CtreMagEncoder_Relative) != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
+                CANTalon.FeedbackDevice.QuadEncoder) != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
             DriverStation.reportError("Could not detect right drive encoder!", false);
         }
         rightMaster_.reverseSensor(false);
@@ -137,8 +136,8 @@ public class DrivetrainControlSubsystem extends Subsystem {
     }
 
     protected synchronized void setLeftRightPower(double left, double right) {
-        leftMaster_.set(left);
-        rightMaster_.set(-right);
+        leftMaster_.set(-left);
+        rightMaster_.set(right);
     }
 
     public synchronized void setOpenLoop(DriveSignal signal) {
@@ -289,8 +288,8 @@ public class DrivetrainControlSubsystem extends Subsystem {
         SmartDashboard.putNumber("gyro_angle", gyro.getAngle());
 //        SmartDashboard.putNumber("gyro_center", gyro.getCenter());
         SmartDashboard.putNumber("heading_error", mLastHeadingErrorDegrees);
-        SmartDashboard.putBoolean("line_sensor1", lineSensor1_.get());
-        SmartDashboard.putBoolean("line_sensor2", lineSensor2_.get());
+        SmartDashboard.putNumber("left_motor_power", leftMaster_.get());
+        SmartDashboard.putNumber("right_motor_power", rightMaster_.get());
     }
 
     public synchronized void zeroSensors() {
@@ -319,7 +318,7 @@ public class DrivetrainControlSubsystem extends Subsystem {
                 || driveControlState_ == DriveControlState.PATH_FOLLOWING_CONTROL) {
             leftMaster_.set(inchesPerSecondToRpm(left_inches_per_sec));
             rightMaster_.set(inchesPerSecondToRpm(right_inches_per_sec));
-            System.out.println("Updating velocity setpoint.");
+            SmartDashboard.putString("In setpoint","Updating velocity setpoint.");
         } else {
             System.out.println("Hit a bad velocity control state");
             leftMaster_.set(0);

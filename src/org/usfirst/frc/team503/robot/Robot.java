@@ -3,6 +3,7 @@ package org.usfirst.frc.team503.robot;
 
 import org.usfirst.frc.team503.robot.commands.ArcadeDriveCommand;
 import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem;
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainControlSubsystem;
 
 import auton_commands.TestCommandGroup;
 import cyber_commands.CyberTeleopArmCommand;
@@ -74,6 +75,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	DrivetrainControlSubsystem.getInstance().outputToSmartDashboard();
         Scheduler.getInstance().run();
     }
 
@@ -93,6 +95,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	SmartDashboard.putNumber("pressure", CyberShooterSubsystem.getPressure());
+    	DrivetrainControlSubsystem.getInstance().outputToSmartDashboard();
     	Scheduler.getInstance().run();
     }
     

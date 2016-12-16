@@ -32,7 +32,7 @@ public class TestCommandGroup extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	List<Waypoint> path = new ArrayList<Waypoint>();
-    	path.add(new Waypoint(new Translation2d(40,0), 10));
+    	path.add(new Waypoint(new Translation2d(40,0), 30));
     	addSequential(new FollowPathCommand(new Path(path), false));
     }
 }
