@@ -65,13 +65,6 @@ public class RobotState {
     public static final int kObservationBufferSize = 100;
     public static final double kMaxTargetAge = 0.4;
 
-    public static final RigidTransform2d kVehicleToTurretFixed = new RigidTransform2d(
-            new Translation2d(Constants.kTurretXOffset, Constants.kTurretYOffset),
-            Rotation2d.fromDegrees(Constants.kTurretAngleOffsetDegrees));
-
-    public static final RigidTransform2d kTurretRotatingToCamera = new RigidTransform2d(
-            new Translation2d(Constants.kCameraXOffset, Constants.kCameraYOffset), new Rotation2d());
-
     //FPGATimestamp -> RigidTransform2d or Rotation2d
     protected InterpolatingTreeMap<InterpolatingDouble, RigidTransform2d> field_to_vehicle_;
     protected RigidTransform2d.Delta vehicle_velocity_;
@@ -93,9 +86,6 @@ public class RobotState {
         turret_rotation_ = new InterpolatingTreeMap<>(kObservationBufferSize);
         turret_rotation_.put(new InterpolatingDouble(start_time), initial_turret_rotation);
 //        goal_tracker_ = new GoalTracker();
-        camera_pitch_correction_ = Rotation2d.fromDegrees(-Constants.kCameraPitchAngleDegrees);
-        camera_yaw_correction_ = Rotation2d.fromDegrees(-Constants.kCameraYawAngleDegrees);
-        differential_height_ = Constants.kCenterOfTargetHeight - Constants.kCameraZOffset;
     }
 
     public synchronized RigidTransform2d getFieldToVehicle(double timestamp) {
@@ -118,16 +108,6 @@ public class RobotState {
 
     public synchronized Map.Entry<InterpolatingDouble, Rotation2d> getLatestTurretRotation() {
         return turret_rotation_.lastEntry();
-    }
-
-    public synchronized RigidTransform2d getFieldToTurretRotated(double timestamp) {
-        InterpolatingDouble key = new InterpolatingDouble(timestamp);
-        return field_to_vehicle_.getInterpolated(key).transformBy(kVehicleToTurretFixed)
-                .transformBy(RigidTransform2d.fromRotation(turret_rotation_.getInterpolated(key)));
-    }
-
-    public synchronized RigidTransform2d getFieldToCamera(double timestamp) {
-        return getFieldToTurretRotated(timestamp).transformBy(kTurretRotatingToCamera);
     }
 
     public synchronized List<RigidTransform2d> getCaptureTimeFieldToGoal() {
