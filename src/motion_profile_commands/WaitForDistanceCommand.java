@@ -1,6 +1,6 @@
 package motion_profile_commands;
 
-import org.usfirst.frc.team503.robot.subsystems.DrivetrainControlSubsystem;
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class WaitForDistanceCommand extends Command {
 	private double distance;
-	private DrivetrainControlSubsystem drive = DrivetrainControlSubsystem.getInstance();
+	private DrivetrainSubsystem drive = DrivetrainSubsystem.getInstance();
     public WaitForDistanceCommand(double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

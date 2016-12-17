@@ -1,6 +1,6 @@
 package motion_profile_commands;
 
-import org.usfirst.frc.team503.robot.subsystems.DrivetrainControlSubsystem;
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import util.Rotation2d;
@@ -13,7 +13,7 @@ public class DriveStraightCommand extends Command {
 	private double velocity;
 	private double distance;
 	private double startDistance;
-	private DrivetrainControlSubsystem drive = DrivetrainControlSubsystem.getInstance(); 
+	private DrivetrainSubsystem drive = DrivetrainSubsystem.getInstance(); 
 	
     public DriveStraightCommand(double distance, double velocity, double heading) {
         // Use requires() here to declare subsystem dependencies

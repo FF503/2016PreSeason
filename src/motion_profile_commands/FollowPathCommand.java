@@ -1,6 +1,6 @@
 package motion_profile_commands;
 
-import org.usfirst.frc.team503.robot.subsystems.DrivetrainControlSubsystem;
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import util.Path;
@@ -12,7 +12,7 @@ public class FollowPathCommand extends Command {
 	private Path path;
 	private boolean reverse;
 	private boolean hasStarted;
-	private DrivetrainControlSubsystem drive = DrivetrainControlSubsystem.getInstance();
+	private DrivetrainSubsystem drive = DrivetrainSubsystem.getInstance();
 	
     public FollowPathCommand(Path path, boolean reverse) {
         // Use requires() here to declare subsystem dependencies

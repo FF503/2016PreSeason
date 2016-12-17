@@ -1,7 +1,8 @@
 package org.usfirst.frc.team503.robot;
 
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
+
 import util.DriveSignal;
-import util.Basic;
 
 /**
  * Helper class to implement "Cheesy Drive". "Cheesy Drive" simply means that
@@ -30,7 +31,7 @@ public class CheesyDriveHelper {
         if (isQuickTurn) {
             if (Math.abs(throttle) < 0.2) {
                 double alpha = 0.1;
-                mQuickStopAccumulator = (1 - alpha) * mQuickStopAccumulator + alpha * Basic.limit(wheel, 1.0) * 2;
+                mQuickStopAccumulator = (1 - alpha) * mQuickStopAccumulator + alpha * DrivetrainSubsystem.getInstance().limit(wheel, -1.0, 1.0) * 2;
             }
             overPower = 1.0;
             angularPower = wheel;
