@@ -35,7 +35,7 @@ public class RobotHardwareCyber extends RobotHardware {
 		pressureMotor = new Talon(2);
 		//armUpperLimitSwitch = new DigitalInput(0);
 		//armLowerLimitSwitch = new DigitalInput(1);
-		pressureSensor = new AnalogInput(0);
+		//pressureSensor = new AnalogInput(0);
 		//accelerometer = new AnalogAccelerometer(1);
 	}
 	

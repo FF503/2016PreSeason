@@ -6,7 +6,6 @@ import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem;
 import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
 import auton_commands.TestCommandGroup;
-import cyber_commands.CyberTeleopArmCommand;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -29,7 +28,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	bot = new RobotHardwareProgrammingBot();		//change for different robots
     	bot.initialize();
-    	OI.initialize();
+    	OI.initialize();    	
     }
 	
 	/**

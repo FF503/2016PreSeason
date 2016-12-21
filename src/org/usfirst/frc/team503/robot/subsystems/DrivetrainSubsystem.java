@@ -312,7 +312,8 @@ public class DrivetrainSubsystem extends Subsystem {
             leftMaster_.set(inchesPerSecondToRpm(left_inches_per_sec));
             rightMaster_.set(inchesPerSecondToRpm(right_inches_per_sec));
             SmartDashboard.putString("In setpoint","Updating velocity setpoint.");
-        } else {
+        } 
+        else {
             System.out.println("Hit a bad velocity control state");
             leftMaster_.set(0);
             rightMaster_.set(0);
@@ -440,6 +441,7 @@ public class DrivetrainSubsystem extends Subsystem {
         rightValue = limit(rightValue,-1,1);
         setLeftRightPower(leftValue, rightValue);
     }
+    
     public static double limit(double num,double min,double max) {
         if (num > max) {
             num= max;
@@ -450,4 +452,11 @@ public class DrivetrainSubsystem extends Subsystem {
         	return num;
     }
     
+    public CANTalon getLeftMotor(){
+    	return leftMaster_;
+    }
+    
+    public CANTalon getRightMotor(){
+    	return rightMaster_;
+    }
 }

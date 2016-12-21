@@ -1,5 +1,8 @@
 package util;
 
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.util.BoundaryException;
 
 /**
@@ -8,7 +11,7 @@ import edu.wpi.first.wpilibj.util.BoundaryException;
  * Does all computation synchronously (i.e. the calculate() function must be
  * called by the user from his own thread)
  */
-public class SynchronousPID {
+public class SynchronousPID{
     private double m_P; // factor for "proportional" control
     private double m_I; // factor for "integral" control
     private double m_D; // factor for "derivative" control
