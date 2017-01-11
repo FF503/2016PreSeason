@@ -3,8 +3,9 @@ package org.usfirst.frc.team503.robot;
 
 import org.usfirst.frc.team503.robot.commands.ArcadeDriveCommand;
 import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem;
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
-import cyber_commands.CyberTeleopArmCommand;
+import auton_commands.TestCommandGroup;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -25,9 +26,9 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	bot = new RobotHardwareCyber();		//change for different robots
+    	bot = new RobotHardwareProgrammingBot();		//change for different robots
     	bot.initialize();
-    	OI.initialize();
+    	OI.initialize();    	
     }
 	
 	/**
@@ -66,13 +67,14 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-       // if (autonomousCommand != null) autonomousCommand.start();
+    	(new TestCommandGroup()).start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	DrivetrainSubsystem.getInstance().outputToSmartDashboard();
         Scheduler.getInstance().run();
     }
 
@@ -84,7 +86,7 @@ public class Robot extends IterativeRobot {
        // if (autonomousCommand != null) autonomousCommand.cancel();
     	
     	(new ArcadeDriveCommand()).start();
-    	(new CyberTeleopArmCommand()).start();
+    	//(new CyberTeleopArmCommand()).start();
     }
 
     /**
@@ -92,6 +94,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	SmartDashboard.putNumber("pressure", CyberShooterSubsystem.getPressure());
+    	DrivetrainSubsystem.getInstance().outputToSmartDashboard();
     	Scheduler.getInstance().run();
     }
     

@@ -2,6 +2,7 @@ package org.usfirst.frc.team503.robot.commands;
 
 import org.usfirst.frc.team503.robot.OI;
 import org.usfirst.frc.team503.robot.RobotMap;
+//import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -15,17 +16,17 @@ public class ArcadeDriveCommand extends Command {
     public ArcadeDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(DrivetrainSubsystem.instance);
+    	requires(DrivetrainSubsystem.getInstance());
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	DrivetrainSubsystem.getInstance().setBrakeMode(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	DrivetrainSubsystem.instance.arcadeDrive(OI.getLeftYValue(), OI.getLeftXValue(), RobotMap.Cyber.DRIVE_SENSITIVITY);
+    	DrivetrainSubsystem.getInstance().arcadeDrive(OI.getLeftYValue(), OI.getLeftXValue());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +36,7 @@ public class ArcadeDriveCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	DrivetrainSubsystem.instance.tankDrive(0, 0, false);
+    	DrivetrainSubsystem.getInstance().tankDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

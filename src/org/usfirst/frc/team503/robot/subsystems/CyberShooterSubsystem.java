@@ -33,10 +33,10 @@ public class CyberShooterSubsystem extends Subsystem implements PIDSource, PIDOu
     }
     
     public CyberShooterSubsystem(){
-    	shooterMotor = Robot.bot.getTalonObj(0);	//change to adjust to different robots
+    	/*shooterMotor = Robot.bot.getTalonObj(0);	//change to adjust to different robots
     	pressureMotor = Robot.bot.getTalonObj(1);
     	pressureSensor = Robot.bot.getAnalogObj(0);
-    }
+*/    }
     
     public static CyberShooterSubsystem instance = new CyberShooterSubsystem();
     
@@ -51,7 +51,8 @@ public class CyberShooterSubsystem extends Subsystem implements PIDSource, PIDOu
     }
     
     public static double getPressure(){		//change to make it accurate
-    	return pressureSensor.getVoltage();
+    	//return pressureSensor.getVoltage();
+    	return 0;
     }
     
     public static void setPressureMotor(double power){
