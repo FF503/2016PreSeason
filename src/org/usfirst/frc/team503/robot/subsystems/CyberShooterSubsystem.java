@@ -42,7 +42,7 @@ public class CyberShooterSubsystem extends Subsystem implements PIDSource, PIDOu
     
     public static void shoot(){ 		//maybe change later
     	shooterMotor.set(1);
-    	Timer.delay(.5);
+    	Timer.delay(1);
     	shooterMotor.set(0);
     }
     

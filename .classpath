@@ -7,5 +7,6 @@
 	<classpathentry exported="true" kind="var" path="networktables"/>
 	<classpathentry exported="true" kind="var" path="networktables.sources"/>
 	<classpathentry exported="true" kind="var" path="wpilib.sources"/>
+	<classpathentry kind="var" path="TalonSRXLib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

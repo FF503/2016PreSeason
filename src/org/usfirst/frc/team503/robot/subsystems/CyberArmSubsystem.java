@@ -54,8 +54,8 @@ public class CyberArmSubsystem extends Subsystem implements PIDSource, PIDOutput
     }
     
     public static void setArmPower(double power){
-    	leftArmMotor.set(-power);
-    	//rightArmMotor.set(-power);
+    	leftArmMotor.set(power);
+    	rightArmMotor.set(power);
     }
     
     public static enum ArmAngle{

@@ -2,14 +2,12 @@
 package org.usfirst.frc.team503.robot;
 
 import org.usfirst.frc.team503.robot.commands.ArcadeDriveCommand;
-import org.usfirst.frc.team503.robot.subsystems.CyberShooterSubsystem;
-import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
-import auton_commands.TestCommandGroup;
+import cyber_commands.CyberShootCommand;
+import cyber_commands.CyberTeleopArmCommand;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -67,14 +65,12 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-    	(new TestCommandGroup()).start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	DrivetrainSubsystem.getInstance().outputToSmartDashboard();
         Scheduler.getInstance().run();
     }
 
@@ -86,15 +82,17 @@ public class Robot extends IterativeRobot {
        // if (autonomousCommand != null) autonomousCommand.cancel();
     	
     	(new ArcadeDriveCommand()).start();
-    	//(new CyberTeleopArmCommand()).start();
+    	
+    	if(bot.getName().equals("Cyber")){
+    		(new CyberTeleopArmCommand()).start();
+    		(new CyberShootCommand()).start();
+    	}
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	SmartDashboard.putNumber("pressure", CyberShooterSubsystem.getPressure());
-    	DrivetrainSubsystem.getInstance().outputToSmartDashboard();
     	Scheduler.getInstance().run();
     }
     

@@ -1,12 +1,12 @@
 package org.usfirst.frc.team503.robot;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.AnalogAccelerometer;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Talon;
-import util.ConstantsBase;
 
 public class RobotHardwareCyber extends RobotHardware {
 	
@@ -120,14 +120,5 @@ public class RobotHardwareCyber extends RobotHardware {
 	@Override
 	public String getName(){
 		return "Cyber";
-	}
-	
-	public static class Constants extends ConstantsBase{
-
-		@Override
-		public String getFileLocation() {
-			return "~/constants.txt";
-		}
-		
 	}
 }
